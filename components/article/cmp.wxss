@@ -36,3 +36,15 @@
   display: block;
   margin-left: 25rpx;
 }
+
+.img-btn {
+  width: 50rpx;
+  height: 50rpx;
+
+}
+
+.img-btn image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 10rpx;
+}

@@ -8,6 +8,7 @@
     "d-video": "/components/video/cmp",
     "d-tag": "/components/tag/cmp",
     "d-more": "/components/more/cmp",
-    "d-like": "/components/like/cmp"
+    "d-like": "/components/like/cmp",
+    "d-imgBtn": "/components/imgBtn/cmp"
   }
 }

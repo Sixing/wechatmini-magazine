@@ -38,6 +38,9 @@
     </view>
     <view class="control-box">
       <d-more class="box" tag="{{articleDetail.tag}}" />
+      <d-imgBtn open-type="share" class="box img-btn">
+        <image src="/images/mark/relay.png" slot="img"></image>
+      </d-imgBtn>
       <d-like class="box" like="{{}}" />
     </view>
   </view>

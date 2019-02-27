@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/mark/mark",
     "pages/index/index",
     "pages/logs/logs",
     "pages/type/type",
-    "pages/catalog/catalog",
-    "pages/mark/mark"
+    "pages/catalog/catalog"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",
