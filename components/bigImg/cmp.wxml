@@ -1,0 +1,4 @@
+<view>
+  <image mode="widthFix" class="image" src="{{imgSrc}}"/>
+  <text class="text" >{{mainTitle}}</text>
+</view>

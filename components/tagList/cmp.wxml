@@ -1,0 +1,11 @@
+<view class="container">
+  <slot name="before"></slot>
+  <d-tag 
+    wx:for="{{markList}}" 
+    wx:key="{{item.type}}"
+    tag="{{item.tag}}"
+    tagId="{{item.typeId}}"
+    class="tag"
+  />
+  <slot name="after"></slot>
+</view>

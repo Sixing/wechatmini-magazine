@@ -1,0 +1,9 @@
+<view class="container">
+  <text class="big-title">{{magazineId == 0 ? date : magazineTypeArr[magazineId]}}</text>
+  <text class="title">{{recommand.title}}</text>
+  <image class="image" src="{{recommand.imgSrc}}" wx:if="{{recommand.imgSrc}}" />
+
+  <view class="skeleton" hidden="{{recommand.imgSrc}}">
+    <view class="loader"></view>
+  </view>
+</view>

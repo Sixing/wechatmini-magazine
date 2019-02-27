@@ -1,0 +1,4 @@
+<view class="containrer">
+  <view class="main-title">{{mainTitle}}阿斯顿发斯蒂芬</view>
+  <view class="sub-head">{{subHead}}阿斯顿发送到发送到发水电费</view>
+</view>
