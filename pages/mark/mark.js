@@ -6,23 +6,38 @@ Page({
    */
   data: {
     userInfo: {},
-    authorized: false
+    authorized: false,
+    likeList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.userAuthorized()
+  },
+
+  onShow() {
+    this.getMyLike()
+  },
+  getMyLike() {
+    const likeList = wx.getStorageSync("likeList") || []
+    this.setData({
+      likeList
+    })
+  }, 
+
+  userAuthorized() {
     wx.getSetting({
       success: res => {
-        if(res.authSetting['scope.userInfo']) {
+        if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: res => {
-              console.log(res.userInfo)
               this.setData({
                 userInfo: res.userInfo,
                 authorized: true
               })
+              this.getMyLike()
             }
           })
         }
@@ -38,6 +53,7 @@ Page({
         userInfo: userInfo,
         authorized: true
       })
+      this.getMyLike()
     }
   }
 })

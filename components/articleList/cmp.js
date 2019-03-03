@@ -1,6 +1,10 @@
 // components/articleList/cmp.js
 import { IndexModel } from '../../models/index.js'
+import {SearchModel} from '../../models/search.js'
+
+const searchModel = new SearchModel();
 const indexModel = new IndexModel();
+
 Component({
   /**
    * 组件的属性列表
@@ -12,6 +16,8 @@ Component({
       observer() {
       }
     },
+
+    word: String,
 
     more: {
       type: String,
@@ -31,9 +37,27 @@ Component({
    */
   data: {
     loading: false,
-    noMoreData: false
+    noMoreData: false,
+    type: ''
   },
 
+  attached() {
+    const curPages = getCurrentPages();
+    const index = curPages.length -1;
+    let type = 'search'
+   
+   if(curPages[index].route == 'pages/search/search') {
+     type = 'search'
+
+   }else {
+     type = 'index'
+   }
+
+   this.setData({
+     type
+   })
+
+  },
   /**
    * 组件的方法列表
    */
@@ -45,13 +69,29 @@ Component({
       }
 
       this._loadLock()
+      this.getMoreData()
+    },
 
-      const magzineId = this.properties.magzineId
+    getMoreData() {
       const start = this.properties.articleList.length
-      indexModel.getArticleList(magzineId, start).then( res => {
-        this._getMoreData(res)
+      let getMore = null;
+
+      if (this.data.type == 'search'){
+        const word = this.data.word;
+        getMore = searchModel.getSearchArticleList(word, start);
+      }else {
+        const magzineId = this.properties.magzineId
+        getMore = getArticleList(magzineId, start);
+      }
+
+      getMore.then(res => {
+        this._setMoreData(res)
+        this._unLock()
       })
     },
+
+
+
 
     hasMoreData() {
       this.setData({
@@ -75,7 +115,7 @@ Component({
       })
     },
 
-    _getMoreData(data) {
+    _setMoreData(data) {
       const combinList = this.data.articleList.concat(data)
 
       if (combinList.length === this.data.articleList.length) {

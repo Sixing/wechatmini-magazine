@@ -1,4 +1,9 @@
 // components/article/cmp.js
+
+import { LikeModel } from '../../models/like.js'
+
+const likeModel = new LikeModel() 
+
 Component({
   /**
    * 组件的属性列表
@@ -11,9 +16,17 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    likeStatus: false
   },
   attached() {
+    const articleDetail = this.properties.articleDetail;
+    const likeList = wx.getStorageSync("likeList") || [];
+    const artId = articleDetail.artId;
+    const likeStatus = likeModel.getLikeStatus(artId)
+    
+    this.setData({
+      likeStatus
+    })
   },
 
 
@@ -21,6 +34,17 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onLike(e) {
+      const like = e.detail.like;
+      const articleDetail = this.data.articleDetail;
+      const likeList = wx.getStorageSync("likeList") || [];
+      const artId = articleDetail.artId;
 
+      if(like) {
+        likeModel.addLikeList(articleDetail)
+      }else {
+        likeModel.removeLikeList(artId)
+      }
+    }
   }
 })

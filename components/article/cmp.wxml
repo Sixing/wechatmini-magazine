@@ -41,7 +41,7 @@
       <d-imgBtn open-type="share" class="box img-btn">
         <image src="/images/mark/relay.png" slot="img"></image>
       </d-imgBtn>
-      <d-like class="box" like="{{}}" />
+      <d-like class="box" like="{{likeStatus}}" catch:like="onLike" />
     </view>
   </view>
 </view>

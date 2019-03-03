@@ -19,9 +19,13 @@ Component({
    */
   methods: {
     onLike () {
+      const like = !this.properties.like
       this.setData({
-        like: !this.properties.like
+        like
       })
+      this.triggerEvent('like',{
+        like
+      },{})
     }
   }
 })

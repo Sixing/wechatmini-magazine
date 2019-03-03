@@ -18,5 +18,5 @@
   </view>
   
   <d-imgBtn />
-  <d-articleList />
+  <d-articleList article-list="{{likeList}}" />
 </view>
